@@ -14,16 +14,17 @@
 2.  使用qq邮箱发送邮件。
 
 
+
 ## 配置
 
-1. 克隆本项目到需要发送邮件的服务器或者本地：
+~~~bash
+git@github.com:yanyingwang/work_log_mailer.git   # 克隆本项目到需要发送邮件的服务器或者本地：
 
-    $ git@github.com:yanyingwang/work_log_mailer.git
+cd work_log_mailer
 
+mkdir logs
 
-2. 按照以下模板创建文件`lib/config.rb`：
-
-~~~ruby
+cat >> lib/config.rb <<EOF
 class WorkLogMailer
   def test_env
   @recipients = %w{ test_env@qq.com }
@@ -41,14 +42,49 @@ class WorkLogMailer
     @dropbox_filelink = "https://www.dropbox.com/s/xxxxxxxxxxxx/xxxxxxxxxxxxx.md?dl=0"   # 此文件被共享了的url地址
   end
 end
+EOF
 ~~~
+
+
 
 ## 测试
 
 上面配置文件中定义的`test_env`内容可以复写`env`已经定义的变量，然后使用`w = WorkLogMailer.test_new`代替`w = WorkLogMailer.new`来加载测试环境。
 
 
-## Dropbox上的`某某某的工作日志.md`的内容格式
+
+## 在ruby console发送邮件
+
+    $ ./bin/console
+
+~~~ruby
+
+w = WorkLogMailer.new
+
+w.file           # 查看参数，非必须执行
+w.content        # 查看参数，非必须执行
+w.content2sent   # 查看参数，非必须执行
+
+w.sendmail       # 发送邮件
+~~~
+
+
+
+## 自动任务发送邮件
+
+    $ rake sendmail
+
+    $ rake test_sendmail
+
+
+
+## crontab自动任务发送邮件
+
+    $ whenever -i
+
+
+
+## 另记：Dropbox上的`某某某的工作日志.md`的内容格式
 
 请使用如下格式记录每天工作日志，请注意时间戳格式：
 ~~~raw
@@ -88,20 +124,6 @@ end
 ~~~
 
 
-## 使用
-
-    $ ./bin/console
-
-~~~ruby
-
-w = WorkLogMailer.new
-
-w.file           # 查看参数，非必须执行
-w.content        # 查看参数，非必须执行
-w.content2sent   # 查看参数，非必须执行
-
-w.sendmail       # 发送邮件
-~~~
 
 ## Development
 

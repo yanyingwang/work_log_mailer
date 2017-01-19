@@ -1,6 +1,17 @@
-require "bundler/gem_tasks"
-require "rspec/core/rake_task"
+#!/usr/bin/env ruby
 
-RSpec::Core::RakeTask.new(:spec)
 
-task :default => :spec
+require_relative 'lib/work_log_mailer'
+
+
+# usage example: $ rake deliver_today
+
+task :sendmail do
+  w = WorkLogMailer.new
+  w.sendmail
+end
+
+task :test_sendmail do
+  w = WorkLogMailer.test_new
+  w.sendmail
+end
