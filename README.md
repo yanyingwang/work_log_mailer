@@ -26,7 +26,8 @@
 ~~~ruby
 class WorkLogMailer
   def ins_var
-    @recipients = %w{ somebody@gmail.com somebody1@gmail.com somebody2@gmail.com }
+    @recipients = %w{ somebody1@gmail.com somebody2@gmail.com }
+    @cc_recipients = %w{ somebody3@gmail.com somebody4@gmail.com somebody2@gmail.com }
     @worker_name = "你的名字"
     @username = "your QQ mailname"
     @password = "your QQ smtp password"

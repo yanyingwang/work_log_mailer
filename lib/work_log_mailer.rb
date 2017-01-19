@@ -59,6 +59,7 @@ class WorkLogMailer
     return "no need to sendmail, scince nothing has changed" unless content2sent
     Pony.mail({ :from => @username + "@qq.com",
                 :to => @recipients,
+                :cc => @cc_recipients,
                 :via => :smtp,
                 :subject => subject,
                 :body => content2sent,
