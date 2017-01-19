@@ -20,7 +20,7 @@
 需要使用dropbox的api来访问文件：<https://www.dropbox.com/developers/apps>
 
 ~~~bash
-git@github.com:yanyingwang/work_log_mailer.git   # 克隆本项目到需要发送邮件的服务器或者本地：
+git clone git@github.com:yanyingwang/work_log_mailer.git   # 克隆本项目到需要发送邮件的服务器或者本地：
 
 cd work_log_mailer
 
