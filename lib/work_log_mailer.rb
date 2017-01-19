@@ -7,8 +7,18 @@ require 'config' if File.exist?(File.expand_path(File.dirname(File.dirname(__FIL
 
 
 class WorkLogMailer
+
+  def self.test_new
+    instance = new
+    instance.test_env
+    instance
+  end
+
   def initialize
-    ins_var
+    env
+  end
+
+  def dropbox
     @dropbox ||= Dropbox::Client.new(@dropbox_access_token)
   end
 
@@ -17,7 +27,7 @@ class WorkLogMailer
   end
 
   def pull
-    @file, @body = @dropbox.download("#{@dropbox_filepath}")
+    @file, @body = dropbox.download("#{@dropbox_filepath}")
   end
 
   def file

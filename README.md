@@ -25,7 +25,12 @@
 
 ~~~ruby
 class WorkLogMailer
-  def ins_var
+  def test_env
+  @recipients = %w{ test_env@qq.com }
+  @cc_recipients = %w{ test_env@gmail.com }
+  end
+
+  def env
     @recipients = %w{ somebody1@gmail.com somebody2@gmail.com }
     @cc_recipients = %w{ somebody3@gmail.com somebody4@gmail.com somebody2@gmail.com }
     @worker_name = "你的名字"
@@ -38,6 +43,9 @@ class WorkLogMailer
 end
 ~~~
 
+## 测试
+
+上面配置文件中定义的`test_env`内容可以复写`env`已经定义的变量，然后使用`w = WorkLogMailer.test_new`代替`w = WorkLogMailer.new`来加载测试环境。
 
 
 ## Dropbox上的`某某某的工作日志.md`的内容格式
@@ -81,6 +89,9 @@ end
 
 
 ## 使用
+
+    $ ./bin/console
+
 ~~~ruby
 
 w = WorkLogMailer.new
