@@ -62,7 +62,7 @@ class WorkLogMailer
   def content2sent
     return nil unless has_written_today?
     new_content = content.gsub(today_string, today_string + "（今日）")
-    (new_content.lines.take(50) + footer_lines).join("")
+    (new_content.lines.take(40) + footer_lines).join("")
   end
 
   def sendmail
